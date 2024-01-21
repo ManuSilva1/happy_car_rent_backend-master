@@ -1,0 +1,44 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Loja {
+  id         Int         @id @default(autoincrement())
+  name       String
+  instructions  String
+  morada     String
+  imagem     String
+    carros        CarroLoja[]
+}
+
+model Frota {
+  id          Int         @id @default(autoincrement())
+  nome      String
+  descricao   String
+  categoria   String
+  // Dados Técnicos
+  motor       String
+  potencia    String
+  transmissao String
+  combustivel String
+  capacidade  String
+  preco        Float
+  imagem      String
+  carrosLoja   CarroLoja[]
+}
+
+model CarroLoja {
+  id         Int    @id @default(autoincrement())
+  lojaId     Int
+  carroId    Int
+  loja       Loja   @relation(fields: [lojaId], references: [id])
+  carro      Frota  @relation(fields: [carroId], references: [id])
+
+  @@unique([lojaId, carroId])
+}
+
