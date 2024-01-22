@@ -10,8 +10,6 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
-
-
 // Rota para a página "Lojas"
 app.get('/loja', async (req, res) => {
   try {
@@ -34,7 +32,6 @@ app.get('/frota', async (req, res) => {
   }
 });
 
-// Rota para a página "Loja"
 app.get('/loja/:id/carros', async (req, res) => {
   const lojaId = parseInt(req.params.id);
 
@@ -48,8 +45,7 @@ app.get('/loja/:id/carros', async (req, res) => {
       }
     });
 
-    // Extrai os carros da resposta do banco de dados
-
+    // Extraer los carros de la respuesta de la base de datos
     const carros = carrosLoja.map(item => item.carro);
 
     res.json(carros);

@@ -3,11 +3,10 @@ const prisma = new PrismaClient();
 
 async function seed() {
   try {
-    // Datos para la primera loja
     const loja1 = await prisma.loja.create({
       data: {
         name: "Aveiro",
-        instructions: "Localizada na encantadora cidade de Aveiro...",
+        instructions: "Localizada na encantadora cidade de Aveiro, conhecida por seus canais pitorescos e arquitetura única. Temos orgulho em oferecer uma ampla frota de veículos modernos e bem mantidos para atender às necessidades de nossos clientes.",
         morada: "Largo da Estação dos Caminhos de Ferro, 3800-179,",
         imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Ria_de_Aveiro_edited_%28cropped%29.jpg/1920px-Ria_de_Aveiro_?",
       }, 
@@ -242,11 +241,10 @@ async function seed() {
     console.log('Lojas criadas');
     console.log('Frota criados');
   } catch (error) {
-    console.error('Error al insertar datos de semilla:', error);
+    console.error('Error ao inserir dados:', error);
   } finally {
-    // Cierra la conexión con la base de datos después de ejecutar las semillas
     await prisma.$disconnect();
-    process.exit(0); // Salida exitosa
+    process.exit(0); 
   }
   }
   
@@ -254,8 +252,8 @@ async function seed() {
   try {
     await seed();
   } catch (e) {
-    console.error('Error en el proceso principal:', e);
-    process.exit(1); // Salida con error
+    console.error('Erro no processo principal:', e);
+    process.exit(1);
   } finally {
     await prisma.$disconnect();
   }
